@@ -1,0 +1,14 @@
+{
+  "name": "day7-playwright-practice",
+  "version": "1.0.0",
+  "description": "Loopcamp Day 7 - Git & Playwright practice project",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0"
+  }
+}

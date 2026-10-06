@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Loopcamp Practice App</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 480px; margin: 40px auto; }
+    h1 { color: #1A7893; }
+    .field { margin-bottom: 14px; }
+    label { display: block; font-weight: bold; margin-bottom: 4px; }
+    input { width: 100%; padding: 8px; box-sizing: border-box; }
+    button { padding: 9px 18px; background: #1A7893; color: #fff; border: 0; cursor: pointer; }
+    .error { color: #c0392b; margin-top: 10px; }
+    .welcome { color: #27694f; margin-top: 10px; font-weight: bold; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Loopcamp Practice App</h1>
+
+  <div id="loginForm">
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="text" placeholder="you@example.com">
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="your password">
+    </div>
+    <button id="loginBtn">Log in</button>
+    <p id="error" class="error hidden"></p>
+  </div>
+
+  <div id="home" class="hidden">
+    <p class="welcome" id="welcome"></p>
+    <button id="logoutBtn">Log out</button>
+  </div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    $('loginBtn').addEventListener('click', () => {
+      const email = $('email').value.trim();
+      const pwd = $('password').value;
+      $('error').classList.add('hidden');
+      if (!email || !pwd) { show('Email and password are required'); return; }
+      if (!email.includes('@')) { show('Please enter a valid email'); return; }
+      if (pwd !== 'loopcamp123') { show('Wrong email or password'); return; }
+      $('loginForm').classList.add('hidden');
+      $('welcome').textContent = 'Welcome, ' + email;
+      $('home').classList.remove('hidden');
+    });
+    $('logoutBtn').addEventListener('click', () => {
+      $('home').classList.add('hidden');
+      $('loginForm').classList.remove('hidden');
+      $('email').value = ''; $('password').value = '';
+    });
+    function show(msg) { $('error').textContent = msg; $('error').classList.remove('hidden'); }
+  </script>
+</body>
+</html>
